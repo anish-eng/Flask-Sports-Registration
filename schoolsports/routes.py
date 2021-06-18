@@ -1,5 +1,7 @@
 
 
+import matplotlib
+
 import tkinter
 from flask import render_template, url_for ,redirect,request,flash,session,abort
 from schoolsports.forms import LoginForm,RegisterForm,AddSportForm,AddEventForm,UserAddForm,UpdateEventForm,UpdateUserForm,ChangePasswordForm,ResetRequestForm,ResetPasswordForm
@@ -27,6 +29,9 @@ import time
 from datetime import date,datetime
 from flask_login import current_user,login_user,logout_user,login_required
 
+
+
+matplotlib.use('Agg')
 #config = pdf.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
 
 @app.route("/",methods=["GET","POST"])
