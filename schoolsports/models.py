@@ -121,7 +121,7 @@ class Event(db.Model):
     enddate=db.Column(db.Date,nullable=False)
     registrationstart=db.Column(db.Date,nullable=False)
     registrationend=db.Column(db.Date,nullable=False)
-    status=db.Column(db.Enum('Active', 'Expired',server_default="Active" ))
+    status=db.Column(db.Enum('Active', 'Expired',name="Status",server_default="Active" ))
     organiser=db.Column(db.Text,nullable=False)
     venue=db.Column(db.Text,nullable=False)
     profilepic=db.Column(db.String(20), nullable=False, default='Eventprofile.png')
