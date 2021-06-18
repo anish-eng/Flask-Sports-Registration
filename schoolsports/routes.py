@@ -2,7 +2,7 @@
 
 import matplotlib
 
-import tkinter
+#import tkinter
 from flask import render_template, url_for ,redirect,request,flash,session,abort
 from schoolsports.forms import LoginForm,RegisterForm,AddSportForm,AddEventForm,UserAddForm,UpdateEventForm,UpdateUserForm,ChangePasswordForm,ResetRequestForm,ResetPasswordForm
 
@@ -15,7 +15,7 @@ import  pandas as pd
 
 #import pdfkit as pdf
 
-from tkinter import Tk, filedialog
+#from tkinter import Tk, filedialog
 
 
 #from tkinter import *
@@ -31,7 +31,7 @@ from flask_login import current_user,login_user,logout_user,login_required
 
 
 
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 #config = pdf.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
 
 @app.route("/",methods=["GET","POST"])
@@ -189,14 +189,15 @@ def about():
         return render_template("aboutadmin.html")
 
 def savefileas(df):
-    root=Tk()
+    #root=Tk()
     
-    f = filedialog.asksaveasfile(mode='a',initialfile = "reports.xlsx",
+    #f = filedialog.asksaveasfile(mode='a',initialfile = "reports.xlsx",
     defaultextension=".xlsx",filetypes=[("Excel Files","*.xlsx*")])
-    root.destroy()
+    #root.destroy()
     
-    root.mainloop()
-    if not f.name:
+    #root.mainloop()
+    ab=3
+    if 1==ab:#if not f.name:
         try:
             writer = pd.ExcelWriter("reports.xlsx",engine='xlsxwriter')
             file=df.to_excel(writer)
@@ -209,8 +210,8 @@ def savefileas(df):
             print(f.name)
             base=os.path.basename(f.name)
             print(base)
-            out_path = f.name
-            writer = pd.ExcelWriter(out_path,engine='xlsxwriter')
+            #out_path = f.name
+            writer = pd.ExcelWriter(ab,engine='xlsxwriter')
             file=df.to_excel(writer)
             writer.save()
         except PermissionError:
