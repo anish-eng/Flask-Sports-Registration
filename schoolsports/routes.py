@@ -16,7 +16,7 @@ import  pandas as pd
 #import pdfkit as pdf
 
 from tkinter import Tk, filedialog
-from tkthread import tk, TkThread
+
 
 #from tkinter import *
 from jinja2 import Environment, FileSystemLoader
