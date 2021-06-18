@@ -1,0 +1,62 @@
+{% extends "layout.html" %} 
+{%block main %}
+
+<!--just a caorusel-->
+<h1 style="font-weight:bolder;color:yellow;"><center>My Tournaments </center></h1>
+<br>
+ 
+{% if not events %}
+<h3 style="color:yellow;"> <center> You have not registered for any tournament yet! </center></h3>
+{% endif %}
+<!--just a caorusel-->
+<div class="container"> 
+   
+    <div class="row">
+        
+{% for my_item in events %} 
+
+<div class="col-md-3 d-md-flex  col-lg-3 d-lg-flex col-xl-3 d-xl-flex col-sm-6 d-sm-flex col-xs-6 d-xs-flex">
+<!--<div class="card-deck"> -->
+    <div  class="card-deck">
+    <div class="card" >
+      <img class="card-img-top" src="{{ url_for('static', filename='profile_pics/events/' + my_item.profilepic) }}" alt="Card image cap">
+     <div class="card-body">
+        <h5 class="card-title">{{my_item.event_title}}</h5>
+        
+        <p class="card-text text-primary">Start date: {{my_item.startdate}}</p>
+        <p class="card-text text-primary">End date: {{my_item.enddate}}</p>
+        
+            
+                   
+               
+                    
+
+        <div class="d-inline-flex p-3  text-white flex-fill">
+                    
+            
+                
+         <CENTER>   <div  >        <a href="{{ url_for('info',eventid=my_item.event_id) }}" class="btn btn-success btn-lg" style="font-weight:bolder;" >Details</a> </div>  </CENTER>
+                                    
+      <!-- <CENTER>  <div >                      </div>    -->
+               
+                                     
+                 
+         </div>
+                 
+       
+        
+     </div> 
+    </div>
+  </div>
+  
+   
+   <br>
+<!--</div>-->
+
+</div>
+
+
+
+{% endfor %}
+<br>
+{% endblock main %}

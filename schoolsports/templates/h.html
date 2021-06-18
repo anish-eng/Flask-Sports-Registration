@@ -1,0 +1,503 @@
+if form.validate_on_submit():
+            admin1=True
+            sports=form.sportsfield.data
+            db.session.query(Sport).delete()
+            db.session.commit()
+            
+            
+            #if sport not in form.sportsfield.data and len(sport.events) or len(sport.player) ==0:
+              #  issue=True
+              #  flash("You cannot remove a sport which has existing events or users. Please select the missing sport.") 
+            
+            
+                
+                
+            for a in sports:
+                sport=Sport(sport_name=a)
+                sportlist.append(sport)
+                
+                db.session.add(sport)
+                db.session.commit()
+                
+            flash("The sports have been added successfully!","light")
+                #if sport.query.all has data;
+            
+                
+                    #if a not in sportlist and len(sport.events)!=0 or len(sport.player) !=0:
+                    #    sportnotthere.append(a)
+                    #    if sportnotthere is not []:
+                     #       flash("You cannot remove a sport which has existing events or users. Please select the missing sport.","danger")
+                    #else:
+                        
+                    
+                   
+            
+            #else:
+                #db.session.query(Sport).delete()
+               # for a in sports:
+                #    sport=Sport(sport_name=a)
+                #    db.session.add(sport)
+                #    db.session.commit()
+                        
+               # flash("The sports have been updated successfully!","light")
+               
+               
+               
+               db.engine.execute("SELECT * FROM user  WHERE user.id=(?) ",(value2))
+
+
+        admin1=True
+
+        querymain=db.engine.execute("SELECT sportevent.event_id FROM sportevent WHERE  sportevent.sport_id IN (?)",(z))
+
+
+
+
+
+
+
+
+
+
+
+
+
+        list2=[]
+        mainlist=[]
+        tables=""
+        if request.method=='POST':
+            if request.form["class1"]!='all':
+                j=(request.form["class1"])
+               
+                
+                for value in request.form.getlist("sport"):
+                    result1=db.engine.execute("SELECT user_id FROM usersport INNER JOIN sport ON usersport.sport_id=sport.sport_id WHERE sport_name=(?)  ",(value))
+                    for a in result1:
+                        # for appending user ids to a list
+                        list2.append(a)
+                       
+                        #getting all details of the user from that user table
+                        query=db.engine.execute("SELECT grrno,firstname,lastname,House,Class,Section,Rollno FROM user  WHERE user.id IN(?)" ,(a))
+                       
+                        
+                        #iterating through users
+                        for b in query:
+                            
+                            abc=b.items()
+                            
+                            dictversion=(dict(abc))
+                            #print("Selected class dictversion is",dictversion["Class"])
+                            print("full dict is",dictversion)
+                                    
+
+                            classdata=dictversion["Class"]
+                            print("class data is",classdata)
+                            print("type of class data is",type(classdata))
+                            print("class form value is",j)
+                            
+                            if int(classdata)==int(j):
+                                newdict=dictversion
+                                mainlist.append(newdict)
+                            
+
+
+                       
+                print("mainlist is",mainlist)
+                if not mainlist:
+                    flash("No students were found with your data.",'danger')
+                else:     
+                    df= pd.DataFrame.from_dict(mainlist)
+                    
+                    df.rename(columns={'grrno':"GRR NO",'firstname':'First name','lastname':'Last name'},inplace=True)
+                    
+                    
+                    tables=df.to_html(header=True,classes='table table-striped')
+                    # pdf.from_string(tables, "report.pdf",configuration=config)
+                    print('Entered heres')
+                  
+              
+                
+        events=Event.query.all()
+        sports=Sport.query.all()
+        
+            
+                
+
+        return render_template("viewreports.html",events=events,sports=sports,tables=tables)
+
+
+
+
+<!-- ***************************************************************************************************************************************************8 -->
+
+
+
+        <div class="container">
+            <div class="row"style="background-color:white;">
+                <div  class="col-md-12 col-lg-12 " style="background-color:white;padding-top:30px;">
+                  
+                  <center><h3 style="color:#219326;">Edit User details</h3> </center>
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+                  <br>
+                  <br>
+                  </div>
+                </div>
+                <div class="row">
+                  <div  class="col-md-12 col-lg-12 " style="background-color:white;">
+                  <form method="POST" enctype='multipart/form-data'>
+                    {{ form.hidden_tag() }}
+                      <center> <img class= "rounded-circle" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" alt="Event img" style="width:125px;height:125px;"> </center>
+                  <center>
+                &nbsp;&nbsp;&emsp;&emsp; <div class="d-inline-flex p-3 " >
+                 {{ form.profile.label() }}<br>
+                  {{ form.profile(class="form-control-file") }} 
+                            </div>
+                    </div>
+                    </div>
+                
+              </center>
+             <div class="form-group">
+              {% if form.email.errors %}
+              {{ form.email(class="form-control form-control-lg is-invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.email.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                  {% else %}
+                    <div class="input-group">
+                                      
+                   {{ form.email(class="form-control form-control-lg",id="firstnameform") }} 
+                    </div>
+                                      
+                 {% endif %}
+                </div>
+            </div> 
+            <br>
+        <!--New start-->
+            <div class="form-group">
+                {% if form.Mobile.errors %}
+                {{ form.Mobile(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.Mobile.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    {% else %}
+                      <div class="input-group">
+                                        
+                     {{ form.Mobile(class="form-control form-control-lg",id="firstnameform") }} 
+                      </div>
+                                        
+                   {% endif %}
+                  </div>
+              </div> 
+              <br>
+        <!-- New starr -->
+              <div class="form-group">
+                {% if form.House.errors %}
+                {{ form.House(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.House.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    {% else %}
+                      <div class="input-group">
+                                        
+                     {{ form.House(class="form-control form-control-lg",id="firstnameform") }} 
+                      </div>
+                                        
+                   {% endif %}
+                  </div>
+              </div> 
+              <br>
+            
+                          <!--New start  -->
+                          <div class="form-group">
+                            {% if form.Myclass.errors %}
+                            {{ form.Myclass(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Myclass.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                                {% else %}
+                                  <div class="input-group">
+                                                    
+                                 {{ form.Myclass(class="form-control form-control-lg",id="firstnameform") }} 
+                                  </div>
+                                                    
+                               {% endif %}
+                              </div>
+                          </div> 
+                          <br>
+                          <!-- New start-->
+        
+                          <div class="form-group">
+                            {% if form.Section.errors %}
+                            {{ form.Section(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Section.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                                {% else %}
+                                  <div class="input-group">
+                                                    
+                                 {{ form.Section(class="form-control form-control-lg",id="firstnameform") }} 
+                                  </div>
+                                                    
+                               {% endif %}
+                              </div>
+                          </div> 
+                          <br>
+                          <!--New start-->
+                          <div class="form-group">
+                            {% if form.Rollno.errors %}
+                            {{ form.Rollno(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Rollno.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                                {% else %}
+                                  <div class="input-group">
+                                                    
+                                 {{ form.Rollno(class="form-control form-control-lg",id="firstnameform") }} 
+                                  </div>
+                                                    
+                               {% endif %}
+                              </div>
+                          </div> 
+                          <br>
+                <!-- new start -->
+                <div class="form-group">
+                    {% if form.aadharcard.errors %}
+                    {{ form.aadharcard(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.aadharcard.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                        {% else %}
+                          <div class="input-group">
+                                            
+                         {{ form.aadharcard(class="form-control form-control-lg",id="firstnameform") }} 
+                          </div>
+                                            
+                       {% endif %}
+                      </div>
+                  </div> 
+                  <br>
+                  <!-- nEWSTART -->
+        
+                  <!-- NEW START -->
+                
+                  <!-- NEW START -->
+                  
+                  <!-- NEW STArt -->
+               <center> 
+                
+                <a class='btn btn-danger btn-lg' href="#"> Change password </a> 
+                 {{ form.submit(class="btn btn-success btn-lg" ) }}    
+                </center>
+              </form>
+              <hr>
+              
+             
+            
+               </div>
+               </div>
+
+
+
+
+
+
+
+
+               <!-- jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj -->
+
+
+
+               <div class="row">
+                <div class="col-lg-4 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        {{form.House.label(class="form-control-label")}}
+                        {% if form.House.errors %}
+                        {{ form.House(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.House.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.House(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+        
+                <div class="col-lg-4 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        {{form.Section.label(class="form-control-label")}}
+                        {% if form.Section.errors %}
+                        {{ form.Section(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Section.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.Section(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+                <div class="col-lg-4 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        {{form.Rollno.label(class="form-control-label")}}
+                        {% if form.Rollno.errors %}
+                        {{ form.Rollno(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Rollno.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.Rollno(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+        
+        
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="row">    
+       
+                <div class="col-lg-6 col-md-6 col-xl-6">
+
+             
+        
+           <!----------gappppppppppppppppppppppp-->    
+        
+                <div class="col-lg-6 col-md-6 col-xl-6">
+                    <div class="form-group">
+                        {{form.Mobile.label(class="form-control-label")}}
+                        {% if form.Mobile.errors %}
+                        {{ form.Mobile(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Mobile.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.Mobile(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+        
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        {{form.House.label(class="form-control-label")}}
+                        {% if form.House.errors %}
+                        {{ form.House(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.House.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.House(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+        
+                <div class="col-lg-4 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        {{form.Section.label(class="form-control-label")}}
+                        {% if form.Section.errors %}
+                        {{ form.Section(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Section.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.Section(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+                <div class="col-lg-4 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        {{form.Rollno.label(class="form-control-label")}}
+                        {% if form.Rollno.errors %}
+                        {{ form.Rollno(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.Rollno.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                             
+                                                
+                             {{ form.Rollno(class="form-control form-control-lg") }} 
+                              
+                                                
+                        {% endif %}
+                        </div>
+                    </div> 
+                </div>
+        
+        
+        
+            </div>
+        
+        </form>
+        </div>
+        {% endblock main %}

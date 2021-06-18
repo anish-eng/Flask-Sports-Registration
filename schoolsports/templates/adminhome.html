@@ -1,0 +1,66 @@
+{% extends "admin.html" %} 
+
+{%block main %}
+
+<!--just a caorusel-->
+<h1 style="font-weight:bolder;color:yellow;"><center> Events </center></h1>
+<br>
+ 
+{% if not allevents %}
+<h3 style="color:yellow;" >You have not created any event yet.</h4>
+{% endif %}
+<!--just a caorusel-->
+<div class="container"> 
+   
+    <div class="row">
+        
+{% for event in allevents %} 
+
+<div class="col-md-3 d-md-flex  col-lg-3 d-lg-flex col-xl-3 d-xl-flex col-sm-6 d-sm-flex col-xs-6 d-xs-flex">
+<!--<div class="card-deck"> -->
+    <div  class="card-deck">
+    <div class="card" >
+      <img class="card-img-top" src="{{ url_for('static', filename='profile_pics/events/' + event.profilepic) }}" alt="Card image cap">
+     <div class="card-body">
+        <h5 class="card-title">{{event.event_title}}</h5>
+        <p class="card-text"> Sport:  {{event.sport[0]|capitalize}} </p> 
+        <p class="card-text text-primary">Start date: {{event.startdate.strftime("%d-%B-%Y")}}</p>
+        <p class="card-text text-primary">End date: {{event.enddate.strftime("%d-%B-%Y")}}</p>
+        
+            
+                   
+               
+                    
+
+        <div class="d-inline-flex p-3  text-white flex-fill">
+                    
+            
+                
+         <CENTER>   <div  >         <button type="button" class=" btn btn-success btn-sm btn-block   "><a href="{{ url_for('admininfo',eventid=event.event_id) }}" class="text-white bg-success" style="font-weight:bolder;"> Details </a></button> </div>  </CENTER> &nbsp;&nbsp;
+         <CENTER>   <div  >         <button type="button" class=" btn btn-success btn-sm btn-block   "><a href="{{ url_for('editevent',eventid=event.event_id) }}" class="text-white bg-success" style="font-weight:bolder;">Edit </a></button> </div>  </CENTER>
+              
+                 
+         </div>
+                 
+       
+        
+     </div> 
+    </div>
+  </div>
+  
+   
+   <br>
+<!--</div>-->
+
+</div>
+
+
+
+{% endfor %}
+<br>
+{% endblock main %}
+
+    
+
+</div>
+</div>

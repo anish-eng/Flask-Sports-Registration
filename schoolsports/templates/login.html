@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+          My login page
+        </title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/free.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/brand.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/flag.min.css">
+<link rel="stylesheet" href="/static/main.css">
+<script src="static/hello.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    </head>
+    <body id="mybody">
+        <div class="container" ><br>
+            <div class="row" >
+                <div class="col-md-8 col-lg-5 offset-lg-3 offset-md-2" id="myform" >
+            <center>
+                <img src="/static/vvslogo.jpg"  alt="VvsLogo" id="img">
+            </center>
+           
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+      
+          
+         
+            <form   method="POST" >
+              {{ form.csrf }}
+              <div class="form-group" >
+                {{ form.csrf_token }}
+                
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                    <div class="input-group">
+                   
+                        {{ form.email(class="form-control form-control-lg",id="emailform") }}
+                      </div>
+                    
+                    {% endif %}
+
+                </div>
+                <div class="form-group">
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }} 
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg")   }}
+                          
+                       
+                    {% endif %}
+                  
+                        
+                </div>
+                <div class="form-check">
+                    {{ form.check(class="form-check-input") }}
+                    {{ form.check.label(class="form-check-label") }} <span > <a href="{{url_for('reset_request')}}" class="float-right">Forgot Password? </a></span>
+                </div>
+
+                    
+                
+                
+      
+          
+              <br>													   
+      
+              <center>
+                {{ form.submit(class="btn btn-success btn-block" ,id="loginbutton") }}
+               
+                </center>
+
+
+                    
+      
+              
+
+              <hr >
+             <center> <p>Dont't have an account?<small class="text-muted ml-2"></small><a href="{{url_for('register')}}"><u>Sign up? </u></a> </small> </p> </center>
+
+            </form>
+            
+        </div>
+        </div> 
+      
+              
+          </div>
+        </div>
+          
+        
+    </body>
+</html>

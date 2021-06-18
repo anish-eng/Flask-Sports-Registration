@@ -1,0 +1,225 @@
+{% extends "admin.html" %} 
+{%block main %}
+<div class="container-fluid" style="background-color: white;">
+    <div class="row" style="background-color: #219326;">
+        <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3"  style="background-color: white; margin-top:40px;">
+            <form method="POST" action="" id="mydivmain" enctype="multipart/form-data" >
+                {{ form.csrf_token }}
+                <div class="form-group">
+                  <center> <h2 style="padding-top:25px;">Create a sports event</h2> </center> 
+                    <hr>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                          {{ message }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                      {% if form.eventtitle.errors %}
+                      
+                          {{ form.eventtitle(class="form-control form-control-lg is-invalid") }}
+                          <div class="invalid-feedback">
+                              {% for error in form.eventtitle.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ form.eventtitle(class="form-control form-control-lg",id="Grrform")   }} 
+                      
+                      {% endif %}
+                  
+                          
+                  </div>
+
+                  <div class="form-group">
+                   
+                        {% if form.eventdescription.errors %}
+                        
+                            {{ form.eventdescription(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.eventdescription.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.eventdescription(class="form-control form-control-lg",id="Grrform")   }} 
+                        
+                        {% endif %}
+                    
+                            
+                    </div>
+
+
+                    <div class="form-group">
+                   
+                        {% if form.venue.errors %}
+                        
+                            {{ form.venue(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.venue.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.venue(class="form-control form-control-lg",id="Grrform")   }} 
+                        
+                        {% endif %}
+                    
+                            
+                    </div>
+
+                    <div class="form-group">
+                   
+                        {% if form.Organiser.errors %}
+                        
+                            {{ form.Organiser(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.Organiser.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.Organiser(class="form-control form-control-lg",id="Grrform")   }} 
+                        
+                        {% endif %}
+                    
+                            
+                    </div>
+
+                    <div class="row">
+                    <div class="col-md-6 col-lg-6 col-xl-6"  style="background-color: white; ">
+                        
+                        <div class="form-group">
+                            <br>
+                            {{ form.eventstartdate.label(class="form-control-label") }} &emsp;&emsp;
+                           {% if form.eventstartdate.errors %}
+                               {{ form.eventstartdate(class="form-control form-control-lg is-invalid") }}
+                               <div class="invalid-feedback">
+                                   {% for error in form.eventstartdate.errors %}
+                                       <span>{{ error }}</span>
+                                   {% endfor %}
+                               </div>
+                           {% else %}
+                          
+                               {{ form.eventstartdate(class="datepicker")   }} <!--<span>DOB</span>-->
+                           
+                           {% endif %}
+                       
+                               
+                       </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 col-xl-6"  style="background-color: white; ">
+                        <div class="form-group">
+                            <br>
+                            {{ form.eventenddate.label(class="form-control-label") }} &emsp;&emsp;
+                           {% if form.eventenddate.errors %}
+                               {{ form.eventenddatedate(class="form-control form-control-lg is-invalid") }}
+                               <div class="invalid-feedback">
+                                   {% for error in form.eventenddate.errors %}
+                                       <span>{{ error }}</span>
+                                   {% endfor %}
+                               </div>
+                           {% else %}
+                          
+                               {{ form.eventenddate(class="datepicker")   }} <!--<span>DOB</span>-->
+                           
+                           {% endif %}
+                       
+                               
+                       </div>
+                    </div>
+                    
+
+
+                   </div>
+                   <br>
+                   <div class="row">
+                    <div class="col-md-6 col-lg-6  "  style="background-color: white; ">
+                   <div class="form-group">
+                    <!--<br> --> 
+                     {% if form.sports.errors %}
+                     
+                         {{ form.sports(class="form-control form-control-lg is-invalid") }}
+                         <div class="invalid-feedback">
+                             {% for error in form.sports.errors %}
+                                 <span>{{ error }}</span> <br>
+                             {% endfor %}
+                         </div>
+                     {% else %}
+                         {{ form.sports(class="form-control form-control-lg",id="passform")   }} 
+                     
+                     {% endif %}
+                     
+
+                    
+                         
+                 </div>
+                 </div>
+
+                 <div class="col-md-6 col-lg-6  "  style="background-color: white; ">
+                    <div class="form-group">
+                        {{ form.eventpic.label() }}
+                        {{ form.eventpic(class="form-control-file") }}
+                        {% if form.eventpic.errors %}
+                            {% for error in form.eventpic.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                 </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-md-6 col-lg-6  "  style="background-color: white; ">
+                        <div class="form-group">
+                            <br>
+                            {{ form.registrationstartdate.label(class="form-control-label") }} &emsp;&emsp;
+                           {% if form.registrationstartdate.errors %}
+                               {{ form.registrationstartdate(class="form-control form-control-lg is-invalid") }}
+                               <div class="invalid-feedback">
+                                   {% for error in form.registrationstartdate.errors %}
+                                       <span>{{ error }}</span>
+                                   {% endfor %}
+                               </div>
+                           {% else %}
+                          
+                               {{ form.registrationstartdate(class="datepicker")   }} <!--<span>DOB</span>-->
+                           
+                           {% endif %}
+                       
+                               
+                       </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6  "  style="background-color: white; ">
+                        <div class="form-group">
+                            <br>
+                            {{ form.registrationenddate.label(class="form-control-label") }} &emsp;&emsp;
+                           {% if form.registrationenddate.errors %}
+                               {{ form.registrationenddate(class="form-control form-control-lg is-invalid") }}
+                               <div class="invalid-feedback">
+                                   {% for error in form.registrationenddate.errors %}
+                                       <span>{{ error }}</span>
+                                   {% endfor %}
+                               </div>
+                           {% else %}
+                          
+                               {{ form.registrationenddate(class="datepicker")   }} <!--<span>DOB</span>-->
+                           
+                           {% endif %}
+                       
+                               
+                       </div>
+                    </div>
+                 </div>
+                 <br>
+                  <center>   {{ form.submit(class="btn btn-success" ) }} </center>
+                  <hr>
+                 </form>
+        </div>
+    </div>
+
+
+</div>
+{% endblock main %}

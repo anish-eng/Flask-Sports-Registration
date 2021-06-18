@@ -1,0 +1,56 @@
+{% extends "layout.html" %} 
+{%block main %}
+<div class="container">
+    <div class="row"style="background-color:white;">
+        <div  class="col-md-12 col-lg-12 " style="background-color:white;padding-top:30px;">
+          {% if wantedevent.registrationend>datenow and not wantedevent in current_user.events %}
+          <marquee style="color:#FF4500;font-weight:bolder;">**Registration is open **</marquee>
+          <br>
+          
+          {% elif wantedevent in current_user.events %}
+          <marquee style="color:#FF4500;font-weight:bolder;">**You have registered **</marquee>
+
+          {% else  %}
+          <marquee style="color:red;font-weight:bolder;">**Registration is closed**</marquee>
+
+          {% endif %}
+          
+          
+          <br>
+          <center><h3 style="color:#219326;">Event details </h3> </center>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+          <br>
+          <br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event name :  </b> <span style="padding-left:25px;"> {{wantedevent.event_title}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event start date :  </b> <span style="padding-left:25px;"> {{wantedevent.startdate.strftime("%d-%B-%Y")}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event end date :  </b> <span style="padding-left:25px;"> {{wantedevent.enddate.strftime("%d-%B-%Y")}}</span> </p><br>
+        
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event instructions :  </b> <span style="padding-left:25px;"> {{wantedevent.event_description}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event organiser :  </b> <span style="padding-left:25px;"> {{wantedevent.organiser}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event Venue :  </b> <span style="padding-left:25px;"> {{wantedevent.venue}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Start date of registration:  </b> <span style="padding-left:25px;"> {{wantedevent.registrationstart.strftime("%d-%B-%Y")}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Last date of registration:  </b> <span style="padding-left:25px;"> {{wantedevent.registrationend.strftime("%d-%B-%Y")}}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Sport:  </b> <span style="padding-left:25px;">{{wantedevent.sport[0]|capitalize}}</span> </p><br>
+        <form method="POST">
+         
+          {% if wantedevent.registrationend <datenow %}
+       <center>  <input type="submit" value="Register" class="btn btn-warning btn-large" disabled>     </center>
+       {% elif wantedevent in current_user.events %}
+       <center>  <input type="submit" value="Register" class="btn btn-warning btn-large" disabled>     </center>
+
+       {% else %}
+       <center>  <input type="submit" value="Register" class="btn btn-warning btn-large" >     </center>
+       {% endif %}
+      </form>
+      
+        </div>
+    </div>
+{% endblock main %}

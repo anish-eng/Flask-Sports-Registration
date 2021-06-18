@@ -1,0 +1,51 @@
+{% extends "admin.html" %}
+{% block main %}
+<div class="container">
+    <div class="row"style="background-color:white;">
+        <div  class="col-md-12 col-lg-12 " style="background-color:white;padding-top:30px;">
+          
+          <center><h3 style="color:#219326;">Edit event details</h3> </center>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+          <br>
+          <br>
+          <form method="POST" enctype='multipart/form-data'>
+            {{ form.hidden_tag() }}
+         <center> <img class= "rounded-circle" src="{{ url_for('static', filename='profile_pics/events/' + theevent.profilepic) }}" alt="Event img" style="width:125px;height:125px;"> </center>
+          <center>
+        &nbsp;&nbsp;&emsp;&emsp; <div class="d-inline-flex p-3 " >
+         {{ form.eventpic.label() }}<br>
+          {{ form.eventpic(class="form-control-file") }} 
+        </div>
+      </center>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event name :  </b> <span style="padding-left:10px;"> {{ form.eventname(class="form-control form-control-lg",id="passform")   }}  </span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event organiser :  </b> <span style="padding-left:25px;"> {{ form.eventorganiser(class="form-control form-control-lg",id="passform")   }}</span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event instructions : </b> <span style="padding-left:25px;">{{ form.eventinstructions(class="form-control form-control-lg",id="passform")   }} </span> </p><br>
+        
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event Venue : </b> <span style="padding-left:25px;">{{ form.eventvenue(class="form-control form-control-lg",id="passform")   }} </span> </p><br>
+        
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Start date of registration:  </b> <span style="padding-left:25px;">  <input type="date" name="bday1" min="1000-01-01" max="3000-12-31" class="form-control datepicker" value="{{ theevent.registrationstart }}"> </span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Last date of registration:  </b> <span style="padding-left:25px;"><input type="date" name="bday2" min="1000-01-01" max="3000-12-31" class="form-control datepicker" value="{{ theevent.registrationend}}"> </span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event start date :  </b> <span style="padding-left:25px;"> <input type="date" name="bday3" min="1000-01-01" max="3000-12-31" class="form-control datepicker" value="{{ theevent.startdate }}"> </span> </p><br>
+        <p style='padding-left:30px;font-size:20px;color:#219326;'> <b>Event end date :  </b> <span style="padding-left:25px;"> <input type="date" name="bday4" min="1000-01-01" max="3000-12-31" class="form-control datepicker" value="{{ theevent.enddate }}"></span> </p><br>
+        
+       <center> 
+        
+        <a class='btn btn-danger btn-lg' href="{{ url_for('adminhome') }}"> Cancel </a> 
+         {{ form.submit(class="btn btn-success btn-lg" ) }}    
+        </center>
+      </form>
+      <hr>
+      
+     
+    
+        </div>
+    </div>
+{% endblock main %}

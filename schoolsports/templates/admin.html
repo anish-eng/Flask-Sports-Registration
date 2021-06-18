@@ -1,0 +1,30 @@
+
+{% extends "layout.html" %} 
+
+
+{% block searchbar %}
+{% endblock searchbar %}
+{% block profile %}
+<ul class="navbar-nav  ml-auto nav-flex-icons"  >
+<p><a href="{{ url_for('adminlogout') }}" class="text-primary" id="textmy">Logout</a></p>
+</ul>
+{% endblock profile %}
+
+{% block addsport %}
+&emsp;
+<li class="nav-item">
+
+<a class="nav-link" href="{{ url_for('addsport') }}" id="none"> <i class="fa fa-fw  fa-soccer-ball-o"></i>Add/Modify sport </a>
+</li>
+{% endblock addsport %}
+
+{% block addevent %}
+&emsp;
+<li class="nav-item">
+
+<a class="nav-link" href="{{ url_for('addevent') }}" id="none"> <i class="fa fa-fw fa-calendar"></i>Create tournament</a>
+</li>
+{% endblock addevent %}
+
+{%block main %}
+{% endblock main %}

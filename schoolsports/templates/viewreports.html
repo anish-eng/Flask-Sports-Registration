@@ -1,0 +1,139 @@
+{% extends "admin.html" %} 
+
+{%block main %}
+<div class="container" style="background-color: white;">
+    <center> <h2 style="padding-top:25px;">View Reports</h2> </center>
+    <br>
+    <h5> Select the criteria for receiving all students. To view a table of the data before the report, click submit, or click on 'Generate Excel Report' for a direct report</h5>
+   
+    <br>
+    <div class="row" style="background-color: #219326;">
+        
+         <div class="col-md- 6 col-lg-6 "  style="background-color: white; ">
+             
+            
+            <form method="POST" action="" id="mydivmain" enctype="multipart/form-data" >
+           
+                
+                <div class="form-group">
+                    <label for="class1" class="form-control-label">Choose a Class:</label>
+
+                    <select name="class1" id="class1" class="form-control form-control-lg">
+                    <option value="all" selected>All classes</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    </select>
+                
+                
+                        
+                </div>
+
+                <div class="form-group">
+                    <label for="section" class="form-control-label">Choose a Section:</label>
+
+                    <select name="section" id="section" class="form-control form-control-lg">
+                    <option value="all" selected>All Sections</option>
+                    <option value="a">A</option>
+                    <option value="b">B</option>
+                    <option value="c">C</option>
+                    <option value="d">D</option>
+                    </select>
+                
+                        
+                </div>
+            </div>
+            <div class="col-md- 6 col-lg-6 "  style="background-color: white; ">
+                
+                <label for="house" class="form-control-label">Choose a House:</label>
+
+                    <select name="house" id="house" class="form-control form-control-lg">
+                    <option value="all" selected>All Houses</option>
+                    <option value="puma">Puma</option>
+                    <option value="cheetah">Cheetah</option>
+                    <option value="jaguar">Jaguar</option>
+                    <option value="sher">Sher</option>
+                    </select>
+                
+                        
+                
+                <div class="form-group">
+                    <label for="eventname" class="form-control-label">Choose an Event:</label>
+                    
+
+                    <select name="eventname" id="event1" class="form-control form-control-lg" multiple>
+                        {% for e in events %}
+                    <option value="{{e}}">{{e.event_title}}</option>
+                    {% endfor %}
+                    </select>
+                        
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="sport" class="form-control-label">Choose a Sport:</label>
+                    
+
+                    <select name="sport" id="sport" value="1" class="form-control form-control-lg" multiple>
+                        {% for s in sports %}
+                    <option value="{{s}}" >{{s.sport_name}}</option>
+                    {% endfor %}
+                    </select>
+                        
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+     <center>   <input type="submit" name="submit_1" class="btn btn-success btn-lg"> 
+      
+       
+             {% if tables %}
+            
+            <button class='btn btn-danger btn-lg'  name="excelbutton" href="#"> Generate excel report </button> </center>
+            {% else %}
+            <button class='btn btn-danger btn-lg'  name="excelbutton" href="#"  style="opacity: 0.3;" disabled> Generate excel report </button> </center>
+            {% endif %}
+        </div>
+        </div>
+    </form>
+            <br>
+            
+            
+            {{tables|safe }}
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+   </div>
+    
+       
+          
+
+       <!-- </div> -->
+   
+    
+    
+
+   
+
+    
+
+
+{% endblock main %}

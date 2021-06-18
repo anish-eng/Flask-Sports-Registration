@@ -1,0 +1,473 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+          My login page
+        </title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+ <link rel="stylesheet" href="/static/main.css">
+                  </head>
+<body id="registerbody">
+<div class="container">
+    <div class="row">
+            <div class="col-md-10 col-lg-10 offset-1" id="container">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                              {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                  {{ message }}
+                                </div>
+                              {% endfor %}
+                            {% endif %}
+                          {% endwith %}
+                <hr>
+              <center> <img src="/static/vvslogo.jpg"  alt="VvsLogo" id="img"> </center> 
+              <br>
+
+              
+              <h3><center>Create your account </center></h3>
+              
+              <hr>
+              <h4 style="padding-left:20px;">Personal details </h4><br>
+               
+            <div class="container">
+            <div class="row">
+                <div class="col-md-6   col-lg-6  col-12">
+                    <form method="POST">
+                        <!--Firstname div-->
+                        <div class="form-group">
+                            {{ form.hidden_tag() }}
+
+                            
+                          
+                            {% if form.firstname.errors %}
+                                {{ form.firstname(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.firstname.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                  </div>
+                              {% else %}
+                              <div class="input-group">
+                              
+                                  {{ form.firstname(class="form-control form-control-lg",id="firstnameform") }} 
+                              </div>
+                              
+                              {% endif %}
+                              
+                            
+                            
+                            <br>
+                          </div>
+                    </div><!-- ending of firstname div-->
+                    
+                          <!-- second div starts-->
+                          <div class="col-md-6  col-lg-6 col-12">
+                              <!--lastname-->
+                              <div class="form-group">
+                                  {% if form.lastname.errors %}
+                                      {{ form.lastname(class="form-control form-control-lg is-invalid") }}
+                                      <div class="invalid-feedback">
+                                          {% for error in form.lastname.errors %}
+                                              <span>{{ error }}</span>
+                                          {% endfor %}
+                                      </div>
+                                  {% else %}
+                                      {{ form.lastname(class="form-control form-control-lg",id="lastform")   }} 
+                                  
+                                  {% endif %}
+                          
+                                  
+                               </div>
+            
+    
+                          </div><!--ending of second div holding the lastname text area-->
+        
+    
+                          <br>
+                    
+
+                    
+                </div>   <!--closing of new div-->
+                <br>
+                
+                 <!--Third row-->
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-12"><!--div holding the dob and gender widgets-->
+                        <!--Grrno-->
+                       
+                        <div class="form-group">
+                            
+                            {% if form.Mobile.errors %}
+                                {{ form.Mobile(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.Mobile.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.Mobile(class="form-control form-control-lg",id="passform")   }}
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+                        <!--Grrno-->
+                       <!-- female male option-->
+                        <div class="form-group">
+                            <br>
+                          {% if form.malefemale.errors %}
+                                            {{form.malefemale.label(class="form-check-label")}} &emsp;
+                                        {% for subfield in form.malefemale %}
+                            
+                                        {{ subfield }}
+                                         {{ subfield.label }}
+                                         {% endfor %}
+                                
+                                
+                                    <div class="invalid-feedback">
+                                        
+                                  
+                                        {% for error in form.malefemale.errors %}
+                                            <span>{{ error }}</span> <br>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                
+                           
+                            {% else %}
+                                    {{form.malefemale.label(class="form-check-label")}} &emsp;
+                                    {% for subfield in form.malefemale %}
+                                    
+                                    {{ subfield }}
+                                    {{ subfield.label }}
+                                    
+                                    {% endfor %}
+
+                           {% endif %}
+                                    
+                            
+                            
+                            <!--    {{form.malefemale.label(class="form-check-label")}}
+                               {{form.malefemale(class="form-check-input")}} -->
+                              
+                               
+                              
+                           
+                           
+                       
+                               
+                       </div>
+                       <!-- end of female male option-->
+                        
+
+                    </div><!--ending of div holding te dob  widgets-->
+
+                    <!--div ending-->
+                    <div class="col-md-6 col-lg-6 col-12"><!--div holding the aadhar buttons-->
+                         <!--AAdhar-->
+                         <div class="form-group">
+                            {% if form.aadharcard.errors %}
+                                {{ form.aadharcard(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.aadharcard.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.aadharcard(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+
+                        
+                         <!--AAdhar-->
+                        <!--dob field-->
+                         <div class="form-group">
+                             <br>
+                             {{ form.DOB.label(class="form-control-label") }} &emsp;&emsp;
+                            {% if form.DOB.errors %}
+                                {{ form.DOB(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.DOB.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                           
+                                {{ form.DOB(class="datepicker",id="passform",placeholder="hello")   }} <!--<span>DOB</span>-->
+                            
+                            {% endif %}
+                        
+                                
+                        </div>
+
+                        <!--dob field-->  
+                    
+
+                    </div>
+                    <!-- ending of the personal info row-->
+
+
+                </div><!--Ending of third row-->
+
+                <hr>
+                <!----------------------------     Done with personal info div -->
+                <!--Beginning of the email and password div-->
+                <div class="row">
+                    <br>
+                    <h4 style="padding-left: 20px;"> Email and password</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-12">
+                        <br>
+                        <div class="form-group">
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+                        
+                    </div>
+                    <!-- ending of 1 column-->
+                    <div class="col-md-4 col-lg-4 col-12">
+                        <div class="form-group">
+                            <br>
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.password(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+                    </div>
+                    <!-- ending of second column-->
+                    <div class="col-md-4 col-lg-4 col-12">
+                        <div class="form-group">
+                            <br>
+                            {% if form.confirmpassword.errors %}
+                                {{ form.confirmpassword(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.confirmpassword.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.confirmpassword(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+                    </div>
+                    
+                </div>
+                <hr>
+                <!-- ending of the email and password div-->
+                <!--beginning of school details-->
+                <div class="row">
+                    <h4 style="padding-left: 20px;"> School details</h4> 
+                    
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-12">
+                        <div class="form-group">
+                        <!--    <br> -->
+                            {% if form.Myclass.errors %}
+                                {{ form.Myclass(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.Myclass.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.Myclass(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+
+                    </div>   
+                    <!--ending of first column-->           
+                    <div class="col-md-4 col-lg-4 col-12">
+                        <div class="form-group">
+                           <!--<br> --> 
+                            {% if form.Section.errors %}
+                                {{ form.Section(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.Section.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.Section(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+
+                      </div>
+                      <!--ending of second column beginning of third-->
+
+                      <div class="col-md-4 col-lg-4 col-12">
+                        <div class="form-group">
+                           <!--<br> --> 
+                            {% if form.Rollno.errors %}
+                                {{ form.Rollno(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.Rollno.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.Rollno(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                        <br>   
+                                
+                        </div>
+
+                      </div>
+                     
+               
+
+                </div>
+
+                 <!--starting a new row in school details-->
+
+                 <div class="row">
+                    <div class="col-md-4 col-lg-4 col-12">
+
+                        <div class="form-group">
+                            <!--<br> --> 
+                            {% if form.House.errors %}
+                                {{ form.House(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.House.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.House(class="form-control form-control-lg",id="passform")   }} 
+                            
+                            {% endif %}
+                            
+    
+                           
+                                
+                        </div>
+                        </div>
+                        <!-- ending of a column-->
+
+                        <div class="col-md-4 col-lg-4 col-12">
+
+
+                            <div class="form-group">
+                              <!--<br> --> 
+                                {% if form.Grrno.errors %}
+                                
+                                    {{ form.Grrno(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.Grrno.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.Grrno(class="form-control form-control-lg",id="Grrform")   }} 
+                                
+                                {% endif %}
+                            
+                                    
+                            </div>
+                            
+
+
+                        </div>  
+                     <!--  <div class="col-md-4 col-lg-4 col-12">
+                            <div class="form-group">
+                                
+                                <!--<br> --> 
+
+                                <div class="col-md-4 col-lg-4 col-12">
+                                    {{form.sports.label(class="form-control-label")}}
+                                    {% if form.sports.errors %}
+                                       
+                                         {{ form.sports(class="form-control form-control-lg is-invalid") }}
+                                         <div class="invalid-feedback">
+                                             {% for error in form.sports.errors %}
+                                                 <span>{{ error }}</span> <br>
+                                             {% endfor %}
+                                         </div>
+                                     {% else %}
+                                         {{ form.sports(class="form-control form-control-lg",id="passform")   }} 
+                                     
+                                     {% endif %}
+                                </div>
+                              
+
+                 </div>
+
+                 
+                 <hr>
+                 <div class="row">
+                     <div class="col-md-6 col-lg-6 col-6  offset-3">
+                     
+            <center>  {{ form.submit(class="btn btn-success btn-block" ,id="registerbutton") }} </center> 
+            <br>
+        <center>     <p>Already have an account?<small class="text-primary ml-2"></small><a href="{{url_for('login')}}"><u>Login? </u></a> </small> </p> </center>
+                           </div>
+
+                 </div>
+
+            
+            </form>
+    </div><!--closing div for first row-->
+</div><!--closing div for container-->
+</div>
+</div>
+</body>
+</html>

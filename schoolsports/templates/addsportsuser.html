@@ -1,0 +1,55 @@
+{% extends "layout.html" %} 
+
+{%block main %}
+<div class="container-fluid" style="background-color: #219326;">
+    <div class="row" style="background-color: #219326;">
+        <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3"  style="background-color: white;">
+            <form method="POST" action="" id="mydivmain" >
+                {{ form.csrf_token }}
+                
+                <div class="form-group">
+                   
+                   <br>
+                   <br>
+               
+
+              <center>   <h3> Add any sport to your existing list of sports </h3> </center>
+                     <br>
+                     <br>
+                     {% with messages = get_flashed_messages(with_categories=true) %}
+                     {% if messages %}
+                       {% for category, message in messages %}
+                         <div class="alert alert-{{ category }}">
+                           {{ message }}
+                         </div>
+                       {% endfor %}
+                     {% endif %}
+                   {% endwith %}
+                     {% if form.sport.errors %}
+                     
+                         {{ form.sport(class="form-control form-control-lg is-invalid") }}
+                         <div class="invalid-feedback">
+                             {% for error in form.sport.errors %}
+                                 <span>{{ error }}</span> <br>
+                             {% endfor %}
+                         </div>
+                     {% else %}
+                         {{ form.sport(class="form-control form-control-lg",id="passform")   }} 
+                     
+                     {% endif %}
+                     
+
+                    
+                         
+                 </div>
+               
+                <center>        {{ form.submit(class="btn btn-success" ) }} </center>
+            </form>
+
+        
+    </div>
+    
+
+</div>
+</div>
+{% endblock main %}

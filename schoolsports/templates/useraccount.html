@@ -1,0 +1,220 @@
+{% extends "layout.html" %} 
+{%block main %}
+
+ 
+<div class="container" style="background-color: white;padding-top:30px;">
+    
+     <center><h3 style="color:#219326;">Edit User details</h3> </center> 
+     {% with messages = get_flashed_messages(with_categories=true) %}
+     {% if messages %}
+       {% for category, message in messages %}
+         <div class="alert alert-{{ category }}">
+           {{ message }}
+         </div>
+       {% endfor %}
+     {% endif %}
+   {% endwith %} 
+ <form method="POST" enctype='multipart/form-data'>
+    {{ form.hidden_tag() }}
+    <center> <img class= "rounded-circle" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" alt="Event img" style="width:125px;height:125px;"> </center>
+    <!--&nbsp;&nbsp;&emsp;&emsp;--> <center><div class="d-inline-flex p-3 " >
+          {{ form.profile.label() }}
+          {{ form.profile(class="form-control-file") }} 
+                           </div>
+ 
+     <!---new row-->
+    <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        {{form.email.label(class="form-control-label")}}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span><br>
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="input-group">
+                                      
+                        {{ form.email(class="form-control form-control-lg") }} 
+                            </div>
+                                      
+                        {% endif %}
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        {{form.Mobile.label(class="form-control-label")}}    
+                        {% if form.Mobile.errors %}
+                                {{ form.Mobile(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.Mobile.errors %}
+                                        <span>{{ error }}</span> <br>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.Mobile(class="form-control form-control-lg",id="passform")   }}
+                            {% endif %}
+                        
+
+                       
+                            
+                    </div>
+
+                </div>
+
+
+                
+                
+    </div>
+    <br>
+
+
+     <!---new row-->
+     <div class="row">
+        <div class="col-md-4 col-lg-4">
+            <div class="form-group">
+                {{form.House.label(class="form-control-label")}}
+                {% if form.House.errors %}
+                    {{ form.House(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                    {% for error in form.House.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="input-group">
+                              
+                {{ form.House(class="form-control form-control-lg") }} 
+                    </div>
+                              
+                {% endif %}
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4 col-lg-4">
+            <div class="form-group">
+                {{form.Myclass.label(class="form-control-label")}}
+                {% if form.Myclass.errors %}
+                    {{ form.Myclass(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                    {% for error in form.Myclass.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="input-group">
+                              
+                {{ form.Myclass(class="form-control form-control-lg") }} 
+                    </div>
+                              
+                {% endif %}
+            </div>
+
+
+        </div>
+
+
+        
+        <div class="col-md-4 col-lg-4">
+            <div class="form-group">
+                {{form.Section.label(class="form-control-label")}}
+                {% if form.Section.errors %}
+                    {{ form.Section(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                    {% for error in form.Section.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="input-group">
+                              
+                {{ form.Section(class="form-control form-control-lg") }} 
+                    </div>
+                              
+                {% endif %}
+            </div>
+
+        </div>
+</div>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+        <div class="form-group">
+            {{form.aadharcard.label(class="form-control-label")}}
+            {% if form.aadharcard.errors %}
+                {{ form.aadharcard(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                {% for error in form.aadharcard.errors %}
+                    <span>{{ error }}</span><br>
+                {% endfor %}
+                </div>
+            {% else %}
+                <div class="input-group">
+                          
+            {{ form.aadharcard(class="form-control form-control-lg") }} 
+                </div>
+                          
+            {% endif %}
+        </div>
+
+    </div>
+<!--New row-->
+
+    <div class="col-md-6 col-lg-6">
+        <div class="form-group">
+            {{form.Rollno.label(class="form-control-label")}}
+            {% if form.Rollno.errors %}
+                {{ form.Rollno(class="form-control form-control-lg is-invalid") }}
+                
+                <div class="invalid-feedback">
+                {% for error in form.Rollno.errors %}
+                    <span>{{ error }}</span><br>
+                {% endfor %}
+                </div>
+            {% else %}
+                <div class="input-group">
+                          
+            {{ form.Rollno(class="form-control form-control-lg") }} 
+                </div>
+                          
+            {% endif %}
+        </div>
+
+
+    </div>
+
+
+    
+   
+</div>
+   <br>    
+   <br>
+   
+  
+   
+   <center> 
+        
+    <a class='btn btn-danger btn-lg' href="{{ url_for('changepassword', name=current_user.firstname) }}"> Change Password </a> 
+     {{ form.submit(class="btn btn-success btn-lg" ) }}    
+    </center>
+    <br>
+
+
+ 
+   <br> 
+
+        
+   <!-- for container ending-->
+<!-- </div> -->
+</form>
+</div> 
+    {% endblock main %}

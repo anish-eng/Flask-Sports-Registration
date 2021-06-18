@@ -1,0 +1,187 @@
+<html>
+<head>
+
+
+<meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+
+
+<!-- jQuery library -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/static/main.css">
+
+
+
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+ 
+	  
+
+  
+
+ 
+</head>		
+
+<body style="background-color:#219326;">
+
+
+
+	<!--
+	<div id="demo" class="carousel slide" data-ride="carousel" >
+		  
+		  <ul class="carousel-indicators">
+			<li data-target="#demo" data-slide-to="0" class="active"></li>
+			<li data-target="#demo" data-slide-to="1" ></li>
+			<li data-target="#demo" data-slide-to="2"></li>
+		  </ul>
+
+		  
+		  <div class="carousel-inner">
+			<div class="carousel-item active" style="background: no-repeat center center scroll;background-size: contain;" >
+			  <img src="main.png" style="width:100%;" alt="Los Angeles">
+			</div>
+			<div class="carousel-item " style="background: no-repeat center center scroll;" >
+			  <img src="final.png" style="width:100%;" alt="Chicago"  >
+			</div>
+			<div class="carousel-item"  >
+			  <img src="pg3.png" style="width:100%;" alt="New York">
+			</div>
+		  </div>
+		  
+		  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+			<span class="carousel-control-prev-icon"></span>
+		  </a>
+		  <a class="carousel-control-next" href="#demo" data-slide="next">
+			<span class="carousel-control-next-icon"></span>
+		  </a>		  
+		</div> 
+		-->
+		
+		<div id="demo" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{url_for('static',filename = 'proj1.png')}}" alt="Los Angeles" width="1100" >
+      
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename = 'proj3.png')}}" alt="Chicago" width="1100" >
+         
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static',filename = 'finalmain.png')}}" alt="New York" width="1100" >
+      
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+	   
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    {% if current_user.firstname%}
+   <a class="navitem" href="{{ url_for('home', name=current_user.firstname) }}"><i class="fa fa-fw fa-home"></i> Home</a>
+   {% else %}
+   <a class="navitem" href="{{ url_for('adminhome') }}"><i class="fa fa-fw fa-home"></i> Home</a>
+   {% endif %}
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav" id="nav1" >
+	&emsp;&emsp;
+      <li class="nav-item">
+	  &emsp;
+     {% if not current_user.firstname %}
+      <a class="nav-link" href="{{ url_for('about') }}" id="about"> <i class="fa fa-fw fa-file"></i>About</a> 
+      {% else %}
+        <a class="nav-link" href="{{ url_for('about2') }}" id="about"> <i class="fa fa-fw fa-file"></i>About</a> 
+      {% endif %}
+      </li>
+      &emsp;
+      <li class="nav-item">
+        {% if not current_user.firstname %}
+        {% block newtab %}  <a class="nav-link" href="{{ url_for('viewreports') }}" id="none">  <i class="fa fa-fw fa-file"></i> View Reports </a>  {% endblock newtab %}
+        {% else %}
+
+        {% endif %}
+      </li>
+      {% block addsport %}
+      
+      {% endblock addsport %}
+
+      {% block addevent %}
+      
+      {% endblock addevent %}
+    </ul>
+  {% block searchbar %}
+	<form class="form-inline my-2  my-lg-0">
+    
+    <!-- <input class="form control " type="search" placeholder="Search" aria-label="Search...">
+     <span class="input-group-text"><i class="fa fa-fw fa-search"></i></span> -->
+     <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search this blog">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">
+          <i class="fa fa-fw fa-search"></i>
+        </button>
+      </div>
+    </div>
+     
+    </form>
+    {% endblock searchbar %}
+    
+    
+    
+    {% block profile %}
+
+  <ul class="navbar-nav  ml-auto nav-flex-icons"  >
+     
+      <li class="nav-item avatar dropdown"  >
+        <a  class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"> {{current_user.firstname}} {{current_user.lastname}}
+          <img src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" class="rounded-circle "
+            alt="avatar image" width="40" height="40">
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg-right dropdown"
+          aria-labelledby="navbarDropdownMenuLink" aria-haspopup="true" id="dropdown1">
+          <a class="dropdown-item" id="item1" href="{{ url_for('useraccount',name=current_user.firstname) }}"><i class="fa fa-fw fa-user"></i>My profile</a>
+          <a class="dropdown-item" href="{{ url_for('myevents', name=current_user.firstname) }}"><i class="fa fa-fw fa-calendar"></i>My Tournaments</a>
+          <a class="dropdown-item" href="{{ url_for('addsportuser') }}"><i class="fa fa-fw  fa-soccer-ball-o"></i>Add sport</a>
+          <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fa fa-fw  fa-sign-out"></i>Logout</a>
+          
+        </div>
+      </li>
+    </ul>
+  
+	  {% endblock profile %}
+	  
+  </div>  
+</nav>
+{%block main %}
+{% endblock main %}
+</body>
+
+
+</html>
