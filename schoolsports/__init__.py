@@ -25,7 +25,7 @@ login_manager.login_message_category = 'info'
 
 
 app=Flask(__name__)
-app.config["SECRET_KEY"]=ajdbeudeioddnuv9einfnv
+app.config["SECRET_KEY"]='ajdbeudeioddnuv9einfnv'
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
