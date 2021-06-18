@@ -192,12 +192,12 @@ def savefileas(df):
     #root=Tk()
     
     #f = filedialog.asksaveasfile(mode='a',initialfile = "reports.xlsx",
-    defaultextension=".xlsx",filetypes=[("Excel Files","*.xlsx*")])
+    #defaultextension=".xlsx",filetypes=[("Excel Files","*.xlsx*")])
     #root.destroy()
     
     #root.mainloop()
     ab=3
-    if 1==ab:#if not f.name:
+    if ab==1:#if not f.name:
         try:
             writer = pd.ExcelWriter("reports.xlsx",engine='xlsxwriter')
             file=df.to_excel(writer)
@@ -207,9 +207,9 @@ def savefileas(df):
             flash("Seems like you file is open",'danger')
     else:
         try:
-            print(f.name)
-            base=os.path.basename(f.name)
-            print(base)
+            #print(f.name)
+            #base=os.path.basename(f.name)
+            #print(base)
             #out_path = f.name
             writer = pd.ExcelWriter(ab,engine='xlsxwriter')
             file=df.to_excel(writer)
