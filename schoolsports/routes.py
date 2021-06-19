@@ -300,6 +300,7 @@ def viewreports():
                             ##abc contnains each user full object with details 1 by 1
                         #abc=b.items()
                             ##contains dictionary of 1 isngle user   looping     
+                        print(type(b))
                         dictversion=(dict(b))
                                     #print("Selected class dictversion is",dictversion["Class"])
                         
