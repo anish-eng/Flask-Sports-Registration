@@ -209,7 +209,7 @@ class UpdateUserForm(FlaskForm):
    # language = SelectField(u'Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
     Section=SelectField("Section", choices=[('a', 'A'), ('b', 'B'), ('c', 'C'),("d","D")])
     Rollno=IntegerField("Rollno",validators=[InputRequired(),NumberRange(min=1,max=40,message="Roll no must be between 1 and 40")])
-    aadharcard=IntegerField("Aadharcard no",validators=[InputRequired(),check_aadharcard])
+    aadharcard=StringField("Aadharcard no",validators=[InputRequired(),check_aadharcard])
     submit=SubmitField("Update details")
     #password = PasswordField( validators=[InputRequired(),pass_length])
   
