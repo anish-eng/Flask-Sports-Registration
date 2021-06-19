@@ -277,6 +277,7 @@ def viewreports():
                 for a in result1:
                     #print("a",a)            # for appending user ids to a list
                     list2.append(a)
+                    print("a  is",a)
                             
                                 #getting all details of the user from that user table
                     query=db.session.query(User.grrno,User.firstname,User.lastname,User.House,User.Class,User.Section,User.Rollno).filter(User.id.in_([1,2]))
