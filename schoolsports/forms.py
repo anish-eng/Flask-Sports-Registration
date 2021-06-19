@@ -62,9 +62,9 @@ def check_first_last(form,field):
         raise ValidationError("Please enter a valid name without a number.")
     #if abc==int:
 
-def check_mobile(form,field):
-    if type(field.data)!=int or len(str(field.data))!=10:
-        raise ValidationError("Enter a valid mobile number")
+#def check_mobile(form,field):
+ #   if type(field.data)!=int or len(str(field.data))!=10:
+ #       raise ValidationError("Enter a valid mobile number")
 
 def check_datetime(form,field):
     
@@ -99,7 +99,7 @@ class RegisterForm(FlaskForm):
     email = StringField(validators=[InputRequired(), Email(),check_email_domain],render_kw={"placeholder": "Email(School email only)"})
     password = PasswordField( validators=[InputRequired(),pass_length],render_kw={"placeholder": "Password(Min 8 characters)"})
     DOB=DateField("Date of Birth",validators=[check_datetime,InputRequired()],format='%Y-%m-%d',render_kw={"placeholder": "DOB"})
-    Mobile=IntegerField(validators=[InputRequired(),check_mobile],render_kw={"placeholder": "Mobile no"})
+    Mobile=StringField(validators=[InputRequired()],render_kw={"placeholder": "Mobile no"})
     House=SelectField(u'House', validators=[Optional()], choices=[('puma', 'Puma'), ('cheetah', 'Cheetah'), ('sher', 'Sher'),("jaguar","Jaguar"),("NA","Not applicable")])
     Myclass=IntegerField(validators=[InputRequired(),AnyOf(values=[1,2,3,4,5,6,7,8,9,10])],render_kw={"placeholder": " Class"})
    # language = SelectField(u'Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
