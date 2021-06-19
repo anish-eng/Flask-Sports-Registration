@@ -36,7 +36,7 @@ class User(db.Model,UserMixin):
     email=db.Column(db.String,unique=True,index=True,nullable=False)
     password_hash = db.Column(db.String(128))
     dob=db.Column(db.DateTime,nullable=False)
-    mobileno=db.Column(db.Unicode(10),nullable=False,unique=True)
+    mobileno=db.Column(db.String(10),nullable=False,unique=True)
     House=db.Column(db.String(10),nullable=True)
     Class=db.Column(db.Integer,nullable=False)
     Section=db.Column(db.String(1),nullable=False)
