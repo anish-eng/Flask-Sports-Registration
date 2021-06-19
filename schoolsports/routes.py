@@ -657,7 +657,8 @@ def home(name):
    
     for z in query:
         print("z=",z)
-        querymain=db.engine.execute("SELECT sportevent.event_id FROM sportevent WHERE  sportevent.sport_id IN (?)",(z))
+        querymain=db.session.query(sportevent.event_id).filter(sportevent.sport_id.in_(z))
+        #querymain=db.engine.execute("SELECT sportevent.event_id FROM sportevent WHERE  sportevent.sport_id IN (?)",(z))
 
         for abc in  querymain:
             mylist.append(abc)
