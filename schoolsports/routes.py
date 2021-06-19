@@ -282,11 +282,11 @@ def viewreports():
                             
                                 #getting all details of the user from that user table
                     #query=db.session.query(User.grrno,User.firstname,User.lastname,User.House,User.Class,User.Section,User.Rollno).filter(User.id.in_(list2))
-                    query=db.engine.execute("SELECT grrno,firstname,lastname,House,Class,Section,Rollno FROM user  WHERE user.id IN {};".format(list2)
+                    query=db.engine.execute("SELECT grrno,firstname,lastname,House,Class,Section,Rollno FROM user  WHERE user.id IN {};".format(list2))
                             
                                 
                                 #iterating through users
-                    print("query is",query)
+                    #print("query is",query)
                     for j in query:
                         print(j)
                     
