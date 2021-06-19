@@ -276,8 +276,8 @@ def viewreports():
                     ##adding all user ids to a list
                 for a in result1:
                     #print("a",a)            # for appending user ids to a list
-                    list2.append(a)
-                    print("a  is",a)
+                    list2.append(*a)
+                    print("a  is",*a)
                     print("list2=",list2)
                             
                                 #getting all details of the user from that user table
