@@ -41,7 +41,7 @@ class User(db.Model,UserMixin):
     Class=db.Column(db.Integer,nullable=False)
     Section=db.Column(db.String(1),nullable=False)
     Rollno=db.Column(db.Integer,nullable=False)
-    aadharcard=db.Column(db.Integer,nullable=False,unique=True)
+    aadharcard=db.Column(db.String,nullable=False,unique=True)
     gender = db.Column(db.Enum('male', 'female',name='gender' ))
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     grrno=db.Column(db.Integer,nullable=False,unique=True)

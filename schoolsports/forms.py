@@ -62,9 +62,9 @@ def check_first_last(form,field):
         raise ValidationError("Please enter a valid name without a number.")
     #if abc==int:
 
-#def check_mobile(form,field):
- #   if type(field.data)!=int or len(str(field.data))!=10:
- #       raise ValidationError("Enter a valid mobile number")
+def check_mobile(form,field):
+   if  len((field.data))!=10:
+       raise ValidationError("Enter a valid mobile number")
 
 def check_datetime(form,field):
     
@@ -105,7 +105,7 @@ class RegisterForm(FlaskForm):
    # language = SelectField(u'Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
     Section=SelectField(u'Section', choices=[('a', 'A'), ('b', 'B'), ('c', 'C'),("d","D")])
     Rollno=IntegerField(validators=[InputRequired(),NumberRange(min=1,max=40,message="Roll no must be between 1 and 40")],render_kw={"placeholder": "Roll no"})
-    aadharcard=IntegerField(validators=[InputRequired(),check_aadharcard],render_kw={"placeholder": "Aadhar card no"})
+    aadharcard=StringField(validators=[InputRequired(),check_aadharcard],render_kw={"placeholder": "Aadhar card no"})
    
     Grrno=IntegerField(validators=[InputRequired(), check_len_grr],render_kw={"placeholder":"GRRNO"})
     malefemale = RadioField(label="Gender",validators=[InputRequired(message="Please choose one option")], choices=[('male','Male'),('female','Female')],default="male")
