@@ -279,7 +279,7 @@ def viewreports():
                     list2.append(a)
                             
                                 #getting all details of the user from that user table
-                    query=db.session.query(User.grrno,User.firstname,User.lastname,User.House,User.Class,User.Section,User.Rollno).filter(User.id.in_([a]))
+                    query=db.session.query(User.grrno,User.firstname,User.lastname,User.House,User.Class,User.Section,User.Rollno).filter(User.id.in_([1,2]))
                     #query=db.engine.execute("SELECT grrno,firstname,lastname,House,Class,Section,Rollno FROM user  WHERE user.id IN {};".format(a))
                             
                                 
