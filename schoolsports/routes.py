@@ -284,6 +284,7 @@ def viewreports():
                             
                                 
                                 #iterating through users
+                    print("query is",query)
                     
 
 
