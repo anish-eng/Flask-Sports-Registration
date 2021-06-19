@@ -31,7 +31,7 @@ db.Column("event_id",db.Integer,db.ForeignKey("events.event_id")))
 class User(db.Model,UserMixin):
     id=db.Column(db.Integer,primary_key=True)
     firstname=db.Column(db.String,nullable=False)
-
+    
     lastname=db.Column(db.String,nullable=False)
     email=db.Column(db.String,unique=True,index=True,nullable=False)
     password_hash = db.Column(db.String(128))
