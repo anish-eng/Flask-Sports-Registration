@@ -193,10 +193,11 @@ def about():
         return render_template("aboutadmin.html")
 
 def savefileas(df):
-    abc=os.getcwd()
+    #abc=os.getcwd()
+    #abc.append("\")
     
-    print("working directory=",abc)
-    writer = pd.ExcelWriter(abc,engine='xlsxwriter')
+    #print("working directory=",abc)
+    writer = pd.ExcelWriter("reports.xlsx",engine='xlsxwriter')
     file=df.to_excel(writer)
     writer.save()
     flash("The excel file has been saved to your working directory",'success')
