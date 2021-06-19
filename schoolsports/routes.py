@@ -105,7 +105,7 @@ def register():
                 user=User(firstname=form.firstname.data,lastname=form.lastname.data,
                 email=form.email.data,password_hash=generate_password_hash(form.password.data),dob=form.DOB.data,
                 mobileno=form.Mobile.data,House=form.House.data,Class=form.Myclass.data,Section=form.Section.data,
-                Rollno=form.Rollno.data,aadharcard=form.aadharcard.data,gender=form.malefemale.data,grrno=form.Grrno.data,sports=form.sports.data)
+                Rollno=form.Rollno.data,aadharcard=str(form.aadharcard.data),gender=form.malefemale.data,grrno=form.Grrno.data,sports=form.sports.data)
                 print("aadhardata is",form.aadharcard.data)
                 print(type(form.aadharcard.data))
                 db.session.add(user)
