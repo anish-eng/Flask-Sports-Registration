@@ -665,7 +665,7 @@ def home(name):
         
    
     for event in mylist:
-        fulleventdetail=db.engine.execute("SELECT * FROM events WHERE events.event_id=?",(event))
+        fulleventdetail=db.engine.execute("SELECT * FROM events WHERE events.event_id= %(value)s",{"value":event})
         for realevent in fulleventdetail:
            eventset.append(realevent)
            
