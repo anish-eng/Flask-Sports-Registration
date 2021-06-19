@@ -93,6 +93,8 @@ def register():
     
     
     form=RegisterForm()
+    #print(form.aadharcard.data)
+    #print(type(form.aadharcard.data))
     if form.validate_on_submit():
         if form.Myclass.data>5 and form.House.data=='NA':
             flash("Please enter your house correctly",'danger')
@@ -104,10 +106,12 @@ def register():
                 email=form.email.data,password_hash=generate_password_hash(form.password.data),dob=form.DOB.data,
                 mobileno=form.Mobile.data,House=form.House.data,Class=form.Myclass.data,Section=form.Section.data,
                 Rollno=form.Rollno.data,aadharcard=form.aadharcard.data,gender=form.malefemale.data,grrno=form.Grrno.data,sports=form.sports.data)
+                print("aadhardata is",form.aadharcard.data)
+                print(type(form.aadharcard.data))
                 db.session.add(user)
         # for item in form.sports.data:
             #   user.sports.append(item)
-            
+             
                 db.session.commit()
             
         

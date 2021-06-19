@@ -50,7 +50,7 @@ def check_email_domain(form,field):
 
 def check_aadharcard(form ,field):
     
-    if len((field.data))!=12 :
+    if len(field.data)!=12 :
         
         raise ValidationError("Aadhar card number must be a 12 digit number ")
 
