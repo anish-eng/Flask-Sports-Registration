@@ -270,7 +270,7 @@ def viewreports():
             
             for value in request.form.getlist("sport"):
                     ##getting user ids with given sport
-                result1=db.engine.execute("SELECT user_id FROM usersport INNER JOIN sport ON usersport.sport_id=sport.sport_id WHERE sport_name :value",{"value":value})
+                result1=db.engine.execute("SELECT user_id FROM usersport INNER JOIN sport ON usersport.sport_id=sport.sport_id WHERE sport_name = :value",{"value":value})
                 print("result 1 is",result1)
         
                     ##adding all user ids to a list
