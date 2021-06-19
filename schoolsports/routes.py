@@ -193,6 +193,13 @@ def about():
         return render_template("aboutadmin.html")
 
 def savefileas(df):
+    abc=os.getcwd()
+    print(abc)
+    writer = pd.ExcelWriter(abc,engine='xlsxwriter')
+    file=df.to_excel(writer)
+    writer.save()
+    flash("The excel file has been saved to your working directory",'success')
+
     #root=Tk()
     
     #f = filedialog.asksaveasfile(mode='a',initialfile = "reports.xlsx",
@@ -200,27 +207,26 @@ def savefileas(df):
     #root.destroy()
     
     #root.mainloop()
-    ab=3
-    if ab==1:#if not f.name:
-        try:
-            writer = pd.ExcelWriter("reports.xlsx",engine='xlsxwriter')
-            file=df.to_excel(writer)
-            writer.save()
-        except PermissionError:
-            print(1)
-            flash("Seems like you file is open",'danger')
-    else:
-        try:
+    #ab=3
+    #if ab==1:#if not f.name:
+      #  try:
+      #      writer = pd.ExcelWriter("reports.xlsx",engine='xlsxwriter')
+      ##       writer.save()
+      #  except PermissionError:
+      #      print(1)
+       #     flash("Seems like you file is open",'danger')
+    #else:
+    #    try:
             #print(f.name)
             #base=os.path.basename(f.name)
             #print(base)
             #out_path = f.name
-            writer = pd.ExcelWriter(ab,engine='xlsxwriter')
-            file=df.to_excel(writer)
-            writer.save()
-        except PermissionError:
-            print(2)
-            flash("Seems like you file is open",'danger')
+           # writer = pd.ExcelWriter(ab,engine='xlsxwriter')
+        #    file=df.to_excel(writer)
+          #  writer.save()
+       # except PermissionError:
+        #    print(2)
+        #    flash("Seems like you file is open",'danger')
     
     
 
