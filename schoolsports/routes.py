@@ -281,8 +281,8 @@ def viewreports():
                     print("list2=",list2)
                             
                                 #getting all details of the user from that user table
-                    #query=db.session.query(User.grrno,User.firstname,User.lastname,User.House,User.Class,User.Section,User.Rollno).filter(User.id.in_(list2))
-                    query=db.engine.execute("SELECT grrno,firstname,lastname,House,Class,Section,Rollno FROM user  WHERE user.id IN {}".format(tuple(1)))
+                    query=db.session.query(User.grrno,User.firstname,User.lastname,User.House,User.Class,User.Section,User.Rollno).filter(User.id.in_(list2))
+                    #query=db.engine.execute("SELECT grrno,firstname,lastname,House,Class,Section,Rollno FROM user  WHERE user.id IN {}".format(list2))
                             
                                 
                                 #iterating through users
