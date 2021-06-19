@@ -301,7 +301,7 @@ def viewreports():
                         #abc=b.items()
                             ##contains dictionary of 1 isngle user   looping     
                         print(type(b))
-                        dictversion=(dict(b))
+                        dictversion=b.__dict__
                                     #print("Selected class dictversion is",dictversion["Class"])
                         
                                             
