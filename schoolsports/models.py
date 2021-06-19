@@ -43,7 +43,7 @@ class User(db.Model,UserMixin):
     Rollno=db.Column(db.Integer,nullable=False)
     aadharcard=db.Column(db.String(12),nullable=False,unique=True)
     gender = db.Column(db.Enum('male', 'female',name='gender' ))
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_file = db.Column(db.String(255), nullable=False, default='default.jpg')
     grrno=db.Column(db.Integer,nullable=False,unique=True)
     sports=db.relationship("Sport",secondary=usersport, backref="player",lazy=True)
     events=db.relationship("Event",secondary=userevent, backref="participant",lazy=True)
@@ -124,7 +124,7 @@ class Event(db.Model):
     status=db.Column(db.Enum('Active', 'Expired',name="Status",server_default="Active" ))
     organiser=db.Column(db.Text,nullable=False)
     venue=db.Column(db.Text,nullable=False)
-    profilepic=db.Column(db.String(20), nullable=False, default='Eventprofile.png')
+    profilepic=db.Column(db.String(255), nullable=False, default='Eventprofile.png')
     eventsport=db.relationship("Sport",secondary=sportevent,backref="events",lazy=True)
 
 
