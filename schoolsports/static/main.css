@@ -156,7 +156,7 @@ a:hover {
   
 }
 
-table {
+#mytable {
   table-layout: fixed;
   width: 100%;   
   overflow: scroll;
