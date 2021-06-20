@@ -34,7 +34,7 @@ class User(db.Model,UserMixin):
     
     lastname=db.Column(db.String,nullable=False)
     email=db.Column(db.String,unique=True,index=True,nullable=False)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(255))
     dob=db.Column(db.DateTime,nullable=False)
     mobileno=db.Column(db.String(10),nullable=False,unique=True)
     House=db.Column(db.String(10),nullable=True)
