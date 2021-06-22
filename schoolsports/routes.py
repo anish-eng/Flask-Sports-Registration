@@ -197,10 +197,11 @@ def savefileas(df):
     #abc.append("\")
     
     #print("working directory=",abc)
-    writer = pd.ExcelWriter("reports.xlsx",engine='xlsxwriter')
+    writer = pd.ExcelWriter("./reports.xlsx",engine='xlsxwriter')
     file=df.to_excel(writer)
-    print(file)
+   
     writer.save()
+    print(os.getcwd())
     flash("The excel file has been saved to your working directory",'success')
 
     #root=Tk()

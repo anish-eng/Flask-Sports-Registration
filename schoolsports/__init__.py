@@ -52,6 +52,6 @@ app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 app.config['MAIL_SUPPRESS_SEND'] = False
 app.config['MAIL_DEBUG'] = True
 app.config['TESTING']=False
-print(app.config["TESTING"])
+
 mail=Mail(app)
 from schoolsports import routes
