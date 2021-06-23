@@ -306,7 +306,7 @@ def viewreports():
 
                         ######query is a list of all user details. b is going though each
                     for b in query:
-                        print(b)
+                        print("b=",b)
                         #print("User id is",b)
                         #print("User name is",b.firstname)
                             ##abc contnains each user full object with details 1 by 1
