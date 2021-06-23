@@ -285,7 +285,7 @@ def viewreports():
                 result1=db.engine.execute("SELECT user_id FROM usersport INNER JOIN sport ON usersport.sport_id=sport.sport_id WHERE sport_name = %(value)s",{"value":value})
                 print("result 1 is",result1)
         
-                    ##adding all user ids to a list
+                list2=[]  ##adding all user ids to a list
                 for a in result1:
                     #print("a",a)            # for appending user ids to a list
                     list2.append(*a)
