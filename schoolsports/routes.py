@@ -300,7 +300,7 @@ def viewreports():
                                 #iterating through users
                     #print("query is",query)
                     for j in query:
-                        print(j)
+                        print("j=",j)
                     
 
 
