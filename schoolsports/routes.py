@@ -345,6 +345,7 @@ def viewreports():
                         if classSelected==False and sectionSelected==False:
                             mainlist.append(dictversion)
                             print("Class false section false")
+                            print("mainlist in loop is",mainlist)
                             
 
                         #if (sectionSelected==False and classSelected== False) and houseselected==False:
