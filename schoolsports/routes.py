@@ -203,6 +203,8 @@ def savefileas(df):
     writer.save()
     print(os.getcwd())
     flash("The excel file has been saved to your working directory",'success')
+    var1=pd.read_excel("reports.xlsx")
+    print(var1)
 
     #root=Tk()
     
