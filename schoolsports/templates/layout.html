@@ -154,7 +154,7 @@
 
     <li class="nav-item">
       {% if  current_user.firstname %}
-      <a class="navitem" href="#"><i class="fa fa-fw fa-home"></i> My Tournaments</a>
+      <a class="navitem" href="{{ url_for('myevents', name=current_user.firstname) }}"><i class="fa fa-fw fa-home"></i> My Tournaments</a>
       {% endif %}
     </li>
     {% endblock tournament %}
