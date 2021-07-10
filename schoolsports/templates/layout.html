@@ -173,7 +173,7 @@
         <div class="dropdown-menu dropdown-menu-lg-right dropdown"
           aria-labelledby="navbarDropdownMenuLink" aria-haspopup="true" id="dropdown1">
           <a class="dropdown-item" id="item1" href="{{ url_for('useraccount',name=current_user.firstname) }}"><i class="fa fa-fw fa-user"></i>My profile</a>
-          <a class="dropdown-item" href="{{ url_for('myevents', name=current_user.firstname) }}"><i class="fa fa-fw fa-calendar"></i>My Tournaments</a>
+          <!-- <a class="dropdown-item" href="{{ url_for('myevents', name=current_user.firstname) }}"><i class="fa fa-fw fa-calendar"></i>My Tournaments</a> -->
           <a class="dropdown-item" href="{{ url_for('addsportuser') }}"><i class="fa fa-fw  fa-soccer-ball-o"></i>Add sport</a>
           <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fa fa-fw  fa-sign-out"></i>Logout</a>
           
