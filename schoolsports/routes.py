@@ -159,7 +159,7 @@ def admin():
     else:
         
         return render_template("admin.html")
-    print(admin1)
+    
     
 
 @app.route("/adminlogout",methods=["GET","POST"])
